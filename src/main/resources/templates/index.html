@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title th:text="#{book.system.name}">Book Management</title>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+
+</head>
+<body>
+	<div class="container">
+		<h2 th:text="#{book.header.detail.title}">Books List</h2>
+		<a class="btn btn-primary" href="/book/add" th:text="#{book.button.add.book}">Add Book</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th th:text="#{book.id}">id</th>
+					<th th:text="#{book.title}">Title</th>
+					<th th:text="#{book.author}">Author</th>
+					<!-- <th>Cover</th> -->
+					<th th:text="#{book.action}">Action</th>
+				</tr>
+			</thead>
+			<tbody th:each="book:${books}">
+				<tr>
+					<td th:text="${book.id}"></td>
+					<td th:text="${book.title}"></td>
+					<td th:text="${book.author}"></td>
+					<td><img th:src="@{${book.coverImage}}" width="50px" /></td>
+					
+					<td>
+						<form th:action="@{book/remove(id=${book.id})}" method="post" class="btn-group">
+							<a th:href="@{'book/detail/' + ${book.id}}" class="btn btn-info" th:text="#{book.button.more}">detail </a>  
+							<a th:href="@{/book/edit/(id=${book.id})}" class="btn btn-primary" th:text="#{book.button.edit}">edit</a> 
+							<input type="submit" class="btn btn-danger" th:value="#{book.button.remove}"/>
+						</form>
+					</td>
+				
+				
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
