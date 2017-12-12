@@ -31,8 +31,10 @@ public class BookController {
 	
 	@RequestMapping(value = {"/","index", "/home", "/book"})
 	public String getBooks(Model model) {
+		bookService.initBook();
 		List<Book> books = bookService.findAll(); 
 		model.addAttribute("books", books);
+		
 		return "index";
 	}
 	

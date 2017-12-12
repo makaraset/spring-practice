@@ -24,7 +24,6 @@ public class Book {
 	@Max(3000)
 	private int page;
 	
-	@NotEmpty(message = "Cover image cannot be empty!")
 	private String coverImage;
 	
 	public Book(int id, String title, String publishDate, String author, int page, String coverImage) {
@@ -78,6 +77,11 @@ public class Book {
 		this.coverImage = coverImage;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", publishDate=" + publishDate + ", author=" + author + ", page="
+				+ page + ", coverImage=" + coverImage + "]";
+	}
+
 	
 }

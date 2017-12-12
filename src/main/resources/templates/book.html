@@ -1,56 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/default">
 <head>
 <meta charset="ISO-8859-1"/>
-<title th:text="${actionstat}?#{book.header.add}: #{book.header.edit}">Add Book Page</title>
-<link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+<title th:text="${actionstat}?#{book.header.add}: #{book.header.edit}">Add Book</title>
+
 </head>
 <body>
-	<div class="container">
-		<h2 th:text="${actionstat}?#{book.header.add}: #{book.header.edit}">Add Book</h2><hr/>
-		
-		<form th:action="${actionstat?'/book/add': '/book/edit'}" method="post" th:object="${book}" enctype="multipart/form-data">
-			
-			<label th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
+	<div class="container" layout:fragment="content">
+		<h2 th:text="${actionstat}?#{book.header.add}: #{book.header.edit}">Add
+			Book</h2>
+		<hr />
+
+		<form th:action="${actionstat?'/book/add': '/book/edit'}"
+			method="post" th:object="${book}" enctype="multipart/form-data">
+
+			<label th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors:
+			</label>
 			<ul>
 				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
 			</ul>
-			
+
 			<div class="form-group">
 				<label th:text="#{book.id}"></label> <input type="number"
-					class="form-control" th:field="*{id}"/>
-				<span class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error Id</span>
+					class="form-control" th:field="*{id}" /> <span class="error"
+					th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error
+					Id</span>
 			</div>
 			<div class="form-group">
 				<label th:text="#{book.title}">Title:</label> <input type="text"
-					class="form-control" th:field="*{title}"/>
-				<span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error Title</span>
+					class="form-control" th:field="*{title}" /> <span class="error"
+					th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error
+					Title</span>
 			</div>
 			<div class="form-group">
-				<label th:text="#{book.publishDate}">Published Date:</label> <input type="text"
-					class="form-control" th:field="*{publishDate}"/>
-				<span class="error" th:if="${#fields.hasErrors('publishDate')}" th:errors="*{publishDate}">Error</span>
+				<label th:text="#{book.publishDate}">Published Date:</label> <input
+					type="text" class="form-control" th:field="*{publishDate}" /> <span
+					class="error" th:if="${#fields.hasErrors('publishDate')}"
+					th:errors="*{publishDate}">Error</span>
 			</div>
 			<div class="form-group">
 				<label th:text="#{book.author}">Author:</label> <input type="text"
-					class="form-control" th:field="*{author}"/>
-				<span class="error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Error</span>
+					class="form-control" th:field="*{author}" /> <span class="error"
+					th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Error</span>
 			</div>
 			<div class="form-group">
 				<label th:text="#{book.page}">Pages:</label> <input type="number"
-					class="form-control" th:field="*{page}"/>
-				<span class="error" th:if="${#fields.hasErrors('page')}" th:errors="*{page}">Error</span>
+					class="form-control" th:field="*{page}" /> <span class="error"
+					th:if="${#fields.hasErrors('page')}" th:errors="*{page}">Error</span>
 			</div>
-			
-			
+
+
 			<div class="form-group">
-				<label>Cover Image:</label> 
-				<input type="file" name="file"/>
-				<input type="hidden" class="form-control" th:field="*{coverImage}" placeholder="Enter Image"/>
-				<span class="error" th:if="${#fields.hasErrors('coverImage')}" th:errors="*{coverImage}">Error</span>
+				<label>Cover Image:</label> <input type="file" name="file" /> <input
+					type="text" class="form-control" th:field="*{coverImage}"
+					placeholder="Enter Image" /> <span class="error"
+					th:if="${#fields.hasErrors('coverImage')}"
+					th:errors="*{coverImage}">Error</span>
 			</div>
-			
-			<button type="submit" class="btn btn-default" th:text="${actionstat}?#{book.button.add}: #{book.button.edit}">Add Book</button>
+
+			<button type="submit" class="btn btn-default"
+				th:text="${actionstat}?#{book.button.add}: #{book.button.edit}">Add
+				Book</button>
 		</form>
 	</div>
 </body>

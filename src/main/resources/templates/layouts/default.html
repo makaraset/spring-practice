@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">BMS</title>
+<th:block th:replace="fragments/style"></th:block>
+</head>
+<body>
+	<nav class="navbar navbar-default"
+		th:replace="fragments/header :: header"></nav>
+
+	<div class="container" layout:fragment="content"></div>
+
+	<footer class="page-footer" th:replace="fragments/footer"></footer>
+
+	<th:block th:replace="fragments/script"></th:block>
+
+	<th:block layout:fragment="myScript">
+
+	</th:block>
+
+</body>
+</html>
